@@ -1,0 +1,18 @@
+<h2><%= @title %></h2>
+<table border=1>
+  <tr class=table_header>
+    <td>日期</td>
+    <td>內容</td>
+    <td>作者</td>
+  </tr>
+  <% for i in 0...@limit %>
+    <tr>
+      <td><%= @diarylist[i].date.to_s(:db) %></td>
+      <td><%= format_content(@diarylist[i].content) %></td>
+      <td><%= get_username(@diarylist[i].author) %></td>
+    </tr>
+  <% end %>
+</table>
+<% if @limit != @diarylist.length %>
+  <%= link_to '閱讀更多', @url, :all => true %>
+<% end %>

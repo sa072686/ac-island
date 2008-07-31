@@ -1,0 +1,8 @@
+﻿<h2 class="ThreeD_up">使用者登入</h2>
+<h2 class="ThreeD_down">使用者登入</h2>
+<form action=/user/login method=post>
+使用者名稱：<input type=text size=20 name=username><br>
+密碼：<input type=password size=20 name=password><br>
+<input type=submit name=submit value="登入"><br>
+還沒有帳號？<%= link_to '馬上註冊', :action => 'register' %>
+</form>

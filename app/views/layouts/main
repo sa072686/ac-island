@@ -1,0 +1,10 @@
+<html>
+<head>
+<title>ACMSA - ACM Strength Analyzer  by sa072686</title>
+</head>
+<body background=http://zion.tfcis.org/~sa072686/st.gif text=#EEEEEE link=green alink=green vlink=green>
+
+<%= @content %>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<h2>權限管理</h2>
+<table id="permlist" border=1>
+  <tr class="table_header">
+    <td class="field1">id</td>
+    <td class="field2">名稱</td>
+    <td class="field3">發表文章</td>
+    <td class="field3">修改文章</td>
+    <td class="field3">刪除文章</td>
+    <td class="field3">發表評論</td>
+    <td class="field3">管理權限</td>
+    <td class="field3">編修 CSS</td>
+    <td class="field3">編修 Java Script</td>
+    <td class="field3">管理分類</td>
+    <td class="field3">管理使用者</td>
+    <td class="field3">管理權限群組</td>
+    <td class="field3">管理選單項目</td>
+    <td class="field3">編修日誌</td>
+    <td class="field3">管理信件</td>
+    <td class="field3">觀看統計資料</td>
+    <td class="field3">編修靜態頁面</td>
+    <td class="field3">公告</td>
+    <td class="field4">&nbsp;</td>
+    <td class="field4">&nbsp;</td>
+  </tr>
+  <% for permission in @permissionlist %>
+    <tr>
+      <td><%= permission.id %></td>
+      <td><%= permission.title %></td>
+      <td><%= trans(permission.post?) %></td>
+      <td><%= trans(permission.edit?) %></td>
+      <td><%= trans(permission.delete?) %></td>
+      <td><%= trans(permission.comment?) %></td>
+      <td><%= trans(permission.god?) %></td>
+      <td><%= trans(permission.edit_css?) %></td>
+      <td><%= trans(permission.edit_javascript?) %></td>
+      <td><%= trans(permission.category_manage?) %></td>
+      <td><%= trans(permission.user_manage?) %></td>
+      <td><%= trans(permission.permission_manage?) %></td>
+      <td><%= trans(permission.menu_manage?) %></td>
+      <td><%= trans(permission.diary_manage?) %></td>
+      <td><%= trans(permission.mail_manage?) %></td>
+      <td><%= trans(permission.view_statistics?) %></td>
+      <td><%= trans(permission.edit_page?) %></td>
+      <td><%= trans(permission.announce?) %></td>
+      <td><%= link_to '編輯', :action => 'edit_permission', :id => permission.id %></td>
+      <td><%= link_to '刪除', {:action => 'del_permission', :id => permission.id}, :method => :post, :confirm => '確定要刪除此群組嗎？' %></td>
+    </tr>
+  <% end %>
+</table>
+<form action='/permission/add_permission' method=post>
+<%= render :partial => 'form' %>
+</form>

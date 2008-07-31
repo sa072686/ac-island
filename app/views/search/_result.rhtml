@@ -1,0 +1,7 @@
+<% if @params[:type] == 'problem' %>
+  共找到 <%= @list.length %> 筆資料。<p>
+  <% @problist = @list %>
+  <%= render :partial => '/problem/showproblist' %>
+<% else %>
+未知的搜尋目標。
+<% end %>

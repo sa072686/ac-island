@@ -1,0 +1,7 @@
+<form action=/local_letter/send_letter method=post>
+主旨：<input type=text name=title value="<%= h @let.title %>"><br>
+收件者：<input type=text name=receiver value="<%= h @rec %>"><br>
+內文：<br>
+<textarea name=content cols=120 rows=30><%= h @let.content %></textarea><br>
+<input type=submit value=送出>
+</form>

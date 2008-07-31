@@ -1,0 +1,14 @@
+<table border=1>
+  <tr class=table_header>
+    <td>標題</td>
+    <td>作者</td>
+    <td>時間</td>
+  </tr>
+  <% for item in @list %>
+    <tr>
+      <td><%= get_letter_link(h(item.title), item.id) %><%= unread_note unless item.read? %></td>
+      <td><%= h get_username(item.author) %></td>
+      <td><%= h get_std_time(item.created_at) %></td>
+    </tr>
+  <% end %>
+</table>

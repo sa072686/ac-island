@@ -1,0 +1,31 @@
+題名：
+<select name=proboj>
+<% for oj in @ojlist %>
+  <option value=<%= oj.title %><%= ' selected' if @oj == oj.title %>><%= oj.title %></option>
+<% end %>
+</select>
+<input type=text name=probid value=<%= @id %>>
+<input type=text name=title value="<%= @problem.title if @problem %>"><br>
+難易度：<select name=difficulty>
+<% for i in 0..10 %>
+<option value=<%= i %><%= ' selected' if @problem.difficulty == i %>><%= i %></option>
+<% end %>
+</select>
+<br>
+內文：<textarea name=content rows=30 cols=100><%= @problem.content if @problem %></textarea><br>
+提示：<textarea name=hint rows=30 cols=100><%= @problem.hint if @problem %></textarea><br>
+詳解：<textarea name=solution rows=30 cols=100><%= @problem.solution if @problem %></textarea><br>
+完成度：
+內文<input type=text name=completeness[] value=<%= @completeness[0] %>>
+提示<input type=text name=completeness[] value=<%= @completeness[1] %>>
+詳解<input type=text name=completeness[] value=<%= @completeness[2] %>>
+其它<input type=text name=completeness[] value=<%= @completeness[3] %>>
+<br>
+分類：<br>
+<%= get_select_cat(@problem.category) %>
+<br>
+相關文章：<input type=text name=article value="<%= @problem.article if @problem %>"><br>
+類題：<input type=text name=problem value="<%= @problem.problem if @problem %>"><br>
+<input type=hidden name=id value=<%= @problem.id if @problem %>>
+<input type=submit name=submit value=送出>
+<input type=submit name=submit value=預覽>

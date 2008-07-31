@@ -1,0 +1,38 @@
+﻿<table id="problist" border="1">
+  <tr class="table_header">
+    <td class="field1">原文</td>
+    <td class="field2">題名</td>
+    <td class="field3">難度</td>
+    <td class="field4">分類<br>
+        <%= put_cat_button %></td>
+    <td class="field5">完成度</td>
+    <td class="field6">上次編輯時間</td>
+    <td>點擊數</td>
+    <td>評論數</td>
+    <% if @user.edit? %>
+      <td class="field7">&nbsp;</td>
+    <% end %>
+    <% if @user.del? %>
+      <td class="field7">&nbsp;</td>
+    <% end %>
+  </tr>
+  <% for problem in @problist %>
+    <tr>
+      <td><%= getlink(problem.probid) %></td>
+      <td><%= getinnerlink(problem) %>&nbsp;<span class="new_article"><%= new_flag(problem) %></span></td>
+      <td><%= getdifficulty(problem.difficulty) %></td>
+      <td>&nbsp;<div class=show_cat_field><%= getclass(problem.category) %></div></td>
+      <td><%= getcompleteness(problem.completeness) %></td>
+      <td><%= get_std_time(problem.modifydate) %></td>
+      <td><%= problem.hit %></td>
+      <td><%= problem.comment %></td>
+      <% if @user.edit? %>
+        <td><%= link_to '編輯', :controller => :problem, :action => 'edit_problem', :id => problem.id %></td>
+      <% end %>
+      <% if @user.del? %>
+        <td><%= link_to '刪除', :controller => :problem, :action => 'del_problem', :id => problem.id %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<script type=text/javascript>hideCat()</script>

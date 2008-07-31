@@ -1,0 +1,5 @@
+﻿<h2 class="ThreeD_up">題目列表 - <%= @title %></h2>
+<h2 class="ThreeD_down">題目列表 - <%= @title %></h2>
+<%= @categorylist %><p>
+<%= render :partial => 'showproblist' %>
+<%= link_to '發表', :controller => :problem, :action => 'edit_problem' if @user.post? %>

@@ -1,0 +1,331 @@
+body {
+	background-color: #000000;
+	color: #C0C0C0;
+	font-family: "Courier New", "標楷體", "新細明體";
+}
+legend {
+	padding: 0.4em 0.4em 0.4em 0.4em;
+        color: #FFFFFF;
+        font-size: 12pt;/*for IE*/
+}
+fieldset {
+        border:#0066CC ridge 3px;
+	padding: 0.6em 0.6em 1.0em 0.6em;
+}
+fieldset a:hover {
+        background-color: #333333;
+        text-decoration: underline;
+}
+a {
+	text-decoration: none;
+}
+a:link {
+	color: #FFFFFF;
+}
+a:visited {
+	color: #FFFFFF;
+}
+a:hover {
+	color: yellow;
+}
+pre {
+	font-family: "Sylfaen", "標楷體";
+}
+h1 {
+	font-size: 2.4em;
+	/*color: crimson;*/
+}
+h2 {
+        font-family: "Tahoma", "Helvetica", "Sans-serif", "標楷體";
+	font-size: 1.9em;
+	color: #00FFD0;
+}
+h3 {
+	font-size: 1.5em;
+	color: #00DFFF;
+}
+#topBox {
+	position: relative;
+	width: 96%;
+	top: 0px;
+	left: 2%;
+	background-color: #333333;
+}
+#mainMenu {
+	color: gold;
+	text-align: center;
+        font-weight: bold;
+}
+#bottomBox {
+	position: relative;
+	width: 96%;
+	top: 0px;
+	left: 2%;
+	background-color: #000000;
+}
+#leftBox {
+	position: absolute;
+	width: 200px;
+	top: 0px;
+	left: 0%;
+	background-color: #000000;
+	margin: 10px;
+}
+#header {
+	position: relative;
+	width: 200px;
+	top: 0px;
+	left: 0%;
+	padding: 10px;
+}
+#header h1 {
+	font-size: 60px;
+	font-weight: bold;
+	font-family: "ParkAvenue BT", "Monotype Corsiva", "Verdana";
+	/*color: gold;*/
+	line-height: 60px;
+}
+#rightBox {
+	position: absolute;
+	top: 0px;
+	left: 220px;
+	right: 0px;
+	background-color: #000000;
+	margin: 10px;
+}
+#message {
+	position: relative;
+	top: 0px;
+	left: 0%;
+	color: tomato;
+	text-decoration: underline;
+	padding: 10px;
+}
+table {
+	border-width: 2px;
+	border-style: solid;
+	border-color: #9ACD32;/*yellowgreen*/
+        background-color: #404040;
+        font-family: "Times New Roman", "Serif", "標楷體";
+	border-spacing: 0px;
+        empty-cells: show;
+}
+table tr:hover {
+        background-color: #606060;
+}
+.table_header:hover {
+        background-color: #404040;
+}
+table td {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #333333;
+}
+.table_header {
+	color: gold;
+        text-align: center;
+}
+#problist .field1 {
+	width: 16px;
+}
+#problist .field5 {
+	width: 110px;
+}
+#problist .field6 {
+	width: 150px;
+}
+#problist .field7 {
+	width: 32px;
+}
+#problist .field4 {
+        width: 32px;
+}
+#problist .field3 {
+        width: 52px;
+}
+#permlist .table_header {
+	text-align: center;
+}
+#permlist .field3 {
+	width: 16px;
+}
+#permlist .field4 {
+	width: 34px;
+}
+.errorExplanation {
+	color: yellow;
+}
+.errorExplanation h2 {
+	color: white;
+	font-size: 26px;
+	font-weight: bold;
+	border-width: 1px;
+	border-color: gold;
+	border-style: groove;
+	background-color: red;
+}
+.list_all_depth {
+	padding-left: 16px;
+	display: none;
+}
+.hint_tab, .solution_tab {
+        font-weight: bold;
+	border-style: solid;
+	border-width: 1px 1px 0px 1px;
+	padding: 0px 5px 0px 5px;
+	margin-right: 10px;
+}
+.hints, .solutions {
+        font-family: "Georgia", "標楷體";
+	border-style: solid;
+	border-width: 1px;
+	padding: 10px 10px 10px 10px;
+}
+.show_cat_field {
+	display: none;
+}
+textarea {
+        border: #BBBBBB solid 2px;
+        font-size: 10pt;
+        font-family: Courier New;
+}
+.new_article {
+	color: gold;
+	text-decoration: blink;
+}
+/* ------------------------------------ 這是分隔線 ------------------------------------ */
+h4 {
+	color: white;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+emph {
+	color: mistyrose;
+	font-weight: bold;
+	font-style: italic;
+	text-indent: 2em;
+}
+li {
+	list-style-position: inside;
+}
+ul {
+	list-style-type: disc;
+}
+ol {
+	list-style-type: cjk-ideographic;
+}
+ul ul, ol ul {
+	list-style-type: circle;
+}
+ul ol, ol ol {
+	list-style-type: decimal;
+}
+/* ------------------------------------ 這是分隔線 ------------------------------------ */
+.C {
+	background-color: #000000;
+	color: #FFFFFF;
+	font-family: "Courier New";
+	white-space: pre;
+	font-size: 16px;
+}
+.stringStyle {
+	color: #FFFF00;
+	font-size: 100px;
+}
+.headerStyle {
+	color: #33FF99;
+}
+.insStyle {
+	color: #00FFFF;
+}
+.typeStyle {
+	color: #00FFFF;
+}
+.synStyle {
+	color: #FF00FF;
+}
+.numberStyle {
+	color: #33FF66;
+}
+.commStyle {
+
+	color: #999999;
+}
+.page {
+	width: 950px;
+	position: absolute;
+
+	left: 50%;
+	margin-left: -475px;
+	min-height: 100%;
+	background-color: #440011;
+}
+.pagetop {
+	height: 160px;
+	background-color: #550000;
+	color: #CCCCCC;
+	z-index: 100;
+}
+.pagetop_menu {
+	text-align: right;
+	font-size: 20px;
+	background-color: #555555;
+}
+.title_AC {
+	font-size: 160px;
+	letter-spacing: 20px;
+	color: #FF0000;
+	position: absolute;
+	top: -10px;
+	left: 90px;
+}
+.title_Island {
+	font-size: 80px;
+	letter-spacing: 10px;
+	color: #FFFFFF;
+	position: absolute;
+	top: 70px;
+	left: 180px;
+}
+.pageleft {
+	font-size: 18px;
+	background-color: #990000;
+	width: 240px;
+	z-index: 0;
+	padding: 10px 20px 20px 10px;
+}
+.pageleft fieldset {
+	margin-bottom: 20px;
+}
+.pageleft legend {
+	font-size: 20px;
+}
+.pageright {
+	float: right;
+	width: 680px;
+	background-color: #664444;
+	padding: 10px 0px 10px 0px;
+}
+.news {
+	height: 70px;
+	overflow: auto;
+}
+.code {
+	font-family: "Courier New";
+	width: 100%;
+	background-color: #664444;
+	color: #FFFFFF;
+	border: 1px solid #FFFFFF;
+	overflow: visible;
+}
+/* ------------------------------------ 這是分隔線 ------------------------------------ */
+h2.ThreeD_up {
+        color: #505050;
+        margin-left: 2pt;
+        margin-top: 15pt;
+}
+h2.ThreeD_down {
+        margin-top: -50pt;
+        margin-left: 0pt;
+        padding-bottom: 12pt; 
+}

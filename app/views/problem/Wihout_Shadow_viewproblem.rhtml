@@ -1,0 +1,17 @@
+<h2><%= getprobname(@problem) %></h2>
+難易度：<%= getdifficulty(@problem.difficulty) %><p>
+<%= link_to '回上一層', @cookies[:set_parent] %>
+<div class=content><h3>內文</h3><br><%= format_content(@problem.content) %></div>
+<div class=hint><h3>提示</h3><br><%= get_tabs(@problem.hint, "hint") %></div><br>
+<script language="javascript">clickTab('hint_tab_id_0', 'hint_id_0');</script>
+<div class=solution><h3>詳解</h3><br><%= get_tabs(@problem.solution, "solution") %></div><br>
+<div class=category><h3>所屬分類</h3><%= put_cat_button %><div class=show_cat_field>
+<%= get_category(@problem.category) %></div></div>
+<script language="javascript">clickTab('solution_tab_id_0', 'solution_id_0');</script>
+<div class=article><h3>相關文章</h3><br><%= get_about_link(@problem.article) %></div><br>
+<div class=problem><h3>類題</h3><br><%= get_about_link(@problem.problem) %></div><br>
+<div class=author><h3>作者</h3><br><%= getauthorlist(@userhash, @problem.author) %></div><br>
+<div class=comment><h3>評論</h3></div>
+<script type=text/javascript>hideCat()</script>
+<%= link_to '編輯', :action => 'edit_problem', :id => @problem.id %><br>
+<%= link_to '回上一層', @cookies[:set_parent] %>

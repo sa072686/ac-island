@@ -1,0 +1,17 @@
+<h1>行事曆</h1>
+<%= link_to_last %> | <%= link_to_next %> | 
+<% if @session[:cal_user] %>
+<%= link_to 'logout', :action => 'logout' %>
+<% else %>
+<%= link_to 'login', :action => "login" %>
+<% end %>
+<p>
+<table border=1 class=calendar>
+  <tr>
+    <td>日期</td>
+    <td>星期</td>
+    <td>事件</td>
+    <%= '<td>&nbsp;</td>' if @session[:cal_user] %>
+  </tr>
+  <%= get_all_events %>
+</table>

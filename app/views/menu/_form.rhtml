@@ -1,0 +1,10 @@
+名稱<input type=text name=title<%= " value=\"#{@menu.title}\"" if @menu and @menu.title %>><br>
+網址<input type=text name=url<%= " value=\"#{@menu.url}\"" if @menu and @menu.url %>><br>
+順序<input type=text name=order<%= " value=#{@menu.order}" if @menu and @menu.order %>><br>
+所屬<select name=parent>
+<% for item in @list %>
+  <option value=<%= item[1] %><%= ' selected' if @menu and @menu.parent == item[1] %>><%= item[0] %></option>
+<% end %>
+</select>
+<input type=hidden name=id value=<%= @menu.id if @menu %>>
+<input type=submit value=送出>

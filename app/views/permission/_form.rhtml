@@ -1,0 +1,85 @@
+名稱：<input type=text name=title<%= ' value='+@target.title if @target %>><br>
+發表文章：
+<input type=radio name=post value=1
+<%= ' checked' if @target and @target.post? %>>是
+<input type=radio name=post value=0
+<%= ' checked' if @target == nil || @target.post? == false %>>否<br>
+修改文章：
+<input type=radio name=edit value=1
+<%= ' checked' if @target and @target.edit? %>>是
+<input type=radio name=edit value=0
+<%= ' checked' if @target == nil || @target.edit? == false %>>否<br>
+刪除文章：
+<input type=radio name=delete value=1
+<%= ' checked' if @target and @target.delete? %>>是
+<input type=radio name=delete value=0
+<%= ' checked' if @target == nil || @target.delete? == false %>>否<br>
+發表評論：
+<input type=radio name=comment value=1
+<%= ' checked' if @target and @target.comment? %>>是
+<input type=radio name=comment value=0
+<%= ' checked' if @target == nil || @target.comment? == false %>>否<br>
+管理權限：
+<input type=radio name=god value=1
+<%= ' checked' if @target and @target.god? %>>是
+<input type=radio name=god value=0
+<%= ' checked' if @target == nil || @target.god? == false %>>否<br>
+編修 CSS：
+<input type=radio name=edit_css value=1
+<%= ' checked' if @target and @target.edit_css? %>>是
+<input type=radio name=edit_css value=0
+<%= ' checked' if @target == nil || @target.edit_css? == false %>>否<br>
+編修 JavaScript：
+<input type=radio name=edit_javascript value=1
+<%= ' checked' if @target and @target.edit_javascript? %>>是
+<input type=radio name=edit_javascript value=0
+<%= ' checked' if @target == nil || @target.edit_javascript? == false %>>否<br>
+管理分類：
+<input type=radio name=category_manage value=1
+<%= ' checked' if @target and @target.category_manage? %>>是
+<input type=radio name=category_manage value=0
+<%= ' checked' if @target == nil || @target.category_manage? == false %>>否<br>
+管理使用者：
+<input type=radio name=user_manage value=1
+<%= ' checked' if @target and @target.user_manage? %>>是
+<input type=radio name=user_manage value=0
+<%= ' checked' if @target == nil || @target.user_manage? == false %>>否<br>
+管理權限群組：
+<input type=radio name=permission_manage value=1
+<%= ' checked' if @target and @target.permission_manage? %>>是
+<input type=radio name=permission_manage value=0
+<%= ' checked' if @target == nil || @target.permission_manage? == false %>>否<br>
+管理選單項目：
+<input type=radio name=menu_manage value=1
+<%= ' checked' if @target and @target.menu_manage? %>>是
+<input type=radio name=menu_manage value=0
+<%= ' checked' if @target == nil || @target.menu_manage? == false %>>否<br>
+編修日誌：
+<input type=radio name=diary_manage value=1
+<%= ' checked' if @target and @target.diary_manage? %>>是
+<input type=radio name=diary_manage value=0
+<%= ' checked' if @target == nil || @target.diary_manage? == false %>>否<br>
+管理信件：
+<input type=radio name=mail_manage value=1
+<%= ' checked' if @target and @target.mail_manage? %>>是
+<input type=radio name=mail_manage value=0
+<%= ' checked' if @target == nil || @target.mail_manage? == false %>>否<br>
+觀看統計資料：
+<input type=radio name=view_statistics value=1
+<%= ' checked' if @target and @target.view_statistics? %>>是
+<input type=radio name=view_statistics value=0
+<%= ' checked' if @target == nil || @target.view_statistics? == false %>>否<br>
+編修靜態頁面：
+<input type=radio name=edit_page value=1
+<%= ' checked' if @target and @target.edit_page? %>>是
+<input type=radio name=edit_page value=0
+<%= ' checked' if @target == nil || @target.edit_page? == false %>>否<br>
+公告：
+<input type=radio name=announce value=1
+<%= ' checked' if @target and @target.announce? %>>是
+<input type=radio name=announce value=0
+<%= ' checked' if @target == nil || @target.announce? == false %>>否<br>
+<% if @target %>
+<input type=hidden name=id value=<%= @target.id %>>
+<% end %>
+<input type=submit name=submit value='送出'>

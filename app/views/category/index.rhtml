@@ -1,0 +1,8 @@
+<h2>分類管理</h2>
+<%= h("-1 => 題庫，-2 => 題型分類")+"<p>" %>
+<% for cat in @cat_list %>
+  <%= get_tree(cat, 0) %>
+<% end %>
+<form action='/category/add_category' method=post>
+  <%= render :partial => 'form' %>
+</form>

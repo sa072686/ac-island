@@ -1,0 +1,2 @@
+class LocalMailerController < ApplicationController
+end

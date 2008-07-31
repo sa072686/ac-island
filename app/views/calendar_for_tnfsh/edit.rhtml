@@ -1,0 +1,6 @@
+<form action=/calendar_for_tnfsh/update method=post>
+date: <%= @params[:date] %><br>
+note:<textarea name=note cols=70 rows=20><%= @content %></textarea><br>
+<input type=hidden name=date value=<%= @params[:date] %>>
+<input type=submit value=update>
+</form>

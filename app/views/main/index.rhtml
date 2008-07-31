@@ -1,0 +1,31 @@
+<%= link_to "Show Problem List", :action => 'showproblist' %>
+<%= link_to "About", :action => 'about' %>
+<table border=1>
+  <tr class="tableheader">
+    <td>Rank</td>
+    <td>ACM Rank</td>
+    <td>ACM ID</td>
+    <td>Name</td>
+    <td>Accepted</td>
+    <td>Problem Completeness</td>
+    <td>Problem Tried</td>
+    <td>Percent of Tried</td>
+    <td>Total Submissions</td>
+  </tr>
+  <% rank = 1 %>
+  <% for id in @userlist %>
+    <% user = @userset[id] %>
+    <tr class="tablecontent<%= rank % 2 %>">
+      <td><%= rank %></td>
+      <td>Unfinished Function</td>
+      <td><%= user.acmid %></td>
+      <td><%= link_to user.name, :action => 'personal', :id => user.acmid %></td>
+      <td><%= user.solvednum %></td>
+      <td><%= sprintf("%.2f", user.solvednum * 100.0 / @probnum) %>%</td>
+      <td><%= user.triednum %></td>
+      <td><%= sprintf("%.2f", user.solvednum * 100.0 / user.triednum) %>%</td>
+      <td><%= user.submission %></td>
+    </tr>
+    <% rank += 1 %>
+  <% end %>
+</table>

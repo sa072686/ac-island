@@ -1,0 +1,4 @@
+主旨：<%= h(@letter.title) %><br>
+寄件者：<%= h(get_username(@letter.author)) %><br>
+內文：<br>
+<%= get_letter_content(h(@letter.content)) %>

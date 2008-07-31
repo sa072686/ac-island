@@ -1,0 +1,27 @@
+<h2>使用者列表</h2>
+<%= get_error_message :target %>
+<div>
+  <table id="userlist" border="1">
+    <tr class="table_header">
+      <td class="field1">Userid</td>
+      <td class="field2">Username</td>
+      <td class="field3">Password</td>
+      <td class="field4">Permission</td>
+      <td class="field5">&nbsp;</td>
+      <td class="field5">&nbsp;</td>
+    </tr>
+    <% for user in @userlist %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.username %></td>
+        <td><%= user.password %></td>
+        <td><%= get_permission_name(user.permission) %></td>
+        <td><%= link_to '編輯', :action => 'edit_user', :id => user.id %></td>
+        <td><%= link_to '刪除', {:action => 'del_user', :id => user.id}, :method => :post, :confirm => '確定要刪除嗎？' %></td>
+      </tr>
+    <% end %>
+  </table>
+  <form action='/user/add_user' method=post>
+    <%= render :partial => 'form' %>
+  </form>
+</div>

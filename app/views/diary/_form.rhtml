@@ -1,0 +1,8 @@
+<textarea name=content cols=70 rows=5><%= @diary.content %></textarea><br>
+<select name=parent>
+  <% for parent in @parentlist %>
+    <option value=<%= parent[0] %><%= ' selected' if parent[0] == @diary.parent %>><%= parent[1] %></option>
+  <% end %>
+</select><br>
+<input type=hidden name=id value=<%= @diary.id %>>
+<input type=submit value=送出>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>AC Island</title>
+<%= stylesheet_link_tag 'ACIsland.css', :media => 'all' %>
+<%= stylesheet_link_tag @css_file_name, :media => 'all' %>
+<%= javascript_include_tag 'ACIsland.js' %>
+</head>
+<body onload=setInterval("ChangeHeader()",100);>
+<div id="topBox">
+  <div id="mainMenu">
+    <%= @topmenu %>
+  </div>
+</div>
+<div id="bottomBox">
+  <div id="leftBox">
+    <div id="header">
+      <h1>AC Island</h1>
+    </div>
+    <%= @leftmenu %>
+  </div>
+  <div id="rightBox">
+    <div id="letter_notice">
+      <%= flash[:letter] %>
+    </div>
+    <div id="message">
+      <%= flash[:notice] %>
+    </div>
+    <%= @content_for_layout %>
+  </div>
+</div>
+<script language=javascript type=text/javascript>
+ShowEmptyCells();
+</script>
+</body>
+</html>

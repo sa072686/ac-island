@@ -1,0 +1,5 @@
+<input type=radio name=css value=0<%= ' checked' unless @css %>>預設<br>
+<% for item in @css_list %>
+  <input type=radio name=css value="<%= item.id %>"<%= ' checked' if @css and @css.id == item.id %>><%= h(item.name) %><br>
+<% end %>
+<input type=submit name=submit value="送出">

@@ -1,0 +1,6 @@
+<% for cat in @cat_list %>
+  <% get_tree(cat, 0) %>
+<% end %>
+<form action='/category/update_category' method=post>
+  <%= render :partial => 'form' %>
+</form>

@@ -1,0 +1,9 @@
+﻿<pre>
+<% for com in @comment_list %>
+<%= get_username(com.author) %>：<p><blockquote><%= h com.content %></blockquote><p align=right><%= com.time.to_s(:db) %></p><hr>
+<% end %></pre>
+<% if @can_comment %>
+<form action='/problem/post_comment' method=post>
+<%= render :partial => 'comment_form' %>
+</form>
+<% end %>

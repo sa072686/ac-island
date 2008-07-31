@@ -1,0 +1,8 @@
+<h2>選單列表</h2>
+<pre>
+<%= build_tree(0, 0) %><p>
+<%= build_tree(-1, 0) %>
+</pre>
+<form action='/menu/add_menu' method=post>
+<%= render :partial => 'form' %>
+</form>

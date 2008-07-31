@@ -1,0 +1,56 @@
+<% @showtype = params[:showtype] || 'showall' %>
+<% @sortby = params[:sortby] || 'ID' %>
+<%= link_to 'Ranklist', :action => 'index' %>
+<% if @showtype != 'showall' %>
+  <%= link_to 'Go to Personal', :action => 'personal', :id => @showtype %>
+<% end %>
+<%= link_to 'About', :action => 'about' %>
+<% getnewlist() %>
+<br>
+Click problem ID to browse problem, <br>
+or view the statistics by click problem title.
+<br>
+<form action='/main/showproblist' method=get>
+Show all problems, or problems not solved by: <select name="showtype">
+<option value="showall"<%= ' selected' if @showtype == 'showall' %>>showall</option>
+<% for id in @userlist %>
+  <option value="<%= id %>"<%= ' selected' if @showtype == id %>><%= @userset[id].name %></option>
+<% end %>
+</select>
+<br>
+Sort by: <select name="sortby">
+<option value="ID"<%= ' selected' unless @sortby == 'accepted' %>>ID</option>
+<option value="accepted"<%= ' selected' if @sortby == 'accepted' %>>Accepted</option>
+</select>
+<input type="submit" value="submit">
+</form>
+<table border=1 id="table">
+  <tr class=tableheader>
+    <td>Problem ID</td>
+    <td>Title</td>
+    <td>Accepted</td>
+    <td>Accepted-by</td>
+    <td>Percent of Accepted</td>
+  </tr>
+  <% i = 0 %>
+  <% for id in @newlist %>
+    <% i = 1 - i %>
+    <% problem = @probset[id] %>
+    <tr class=tablecontent<%= i %>>
+      <td><%= link_to problem.pid, getproblink(problem.id) %></td>
+      <td><%= link_to problem.title, :action => 'problem', :id => problem.pid, :sortby => @sortby, :showtype => @showtype %></td>
+      <td><%= solvednum = problem.solvednum %></td>
+      <% index = 0 %>
+      <td><% if problem.solvednum > 0 %>
+      <% problem.solvedlist.each {|item| %>
+        <%= item['name'] %>
+        <%= ', <br>' %>
+      <%}%>
+      <% else %>
+        None solved this.
+      <% end %>
+      </td>
+      <td><%= sprintf("%.2f", problem.solvednum * 100.0 / @usernum) %>%</td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,49 @@
+<% unless params[:id] && @problist.include?(id=params[:id]) %>
+  Invalid problem ID.
+<% else %>
+  <% problem = @probset[params[:id]] %>
+  <% @sortby = params[:sortby] || 'ID' %>
+  <% @showtype = params[:showtype] || 'showall' %>
+  <% getnewlist() %>
+  <% if (i = @newlist.index(params[:id])) > 0 %>
+    <%= link_to 'Previous Problem', :action => 'problem', :id => @newlist[i-1], :sortby => @sortby, :showtype => @showtype %>
+  <% end %>
+  <%= link_to 'Back to Problem List', :action => 'showproblist', :sortby => @sortby, :showtype => @showtype %>
+  <% if @userlist.include?(uid=@params[:uid]) %>
+    <%= link_to 'Back to Personal', :action => 'personal', :id => uid, :comp => params[:comp] %>
+  <% end %>
+  <%= link_to 'Back to Ranklist', :action => 'index' %>
+  <%= link_to 'Origin Problem', getproblink(problem.id) %>
+  <% if i + 1 < @probnum %>
+    <%= link_to 'Next Problem', :action => 'problem', :id => @newlist[i+1], :sortby => @sortby, :showtype => @showtype %>
+  <% end %>
+  <h2><%= sprintf("%s - %s", problem.pid, problem.title) %></h2>
+  <%= sprintf("%d(%.2f%%)", problem.solvednum, problem.solvednum * 100.0 / @usernum) %> people solved.<p>
+  <% ary = problem.solvedlist.sort {|p, q|
+    p['rank'].to_i <=> q['rank'].to_i
+  }%>
+  <table border=1>
+    <tr class=tableheader>
+      <td>Rank in this Problem</td>
+      <td>ID</td>
+      <td>Name</td>
+      <td>Rank</td>
+      <td>Rank in ACM</td>
+      <td>CPU Time</td>
+      <td>Submit Date</td>
+    </tr>
+    <% i = 0 %>
+    <% for tbl in ary %>
+      <% i = 1 - i %>
+      <tr class=tablecontent<%= i %>>
+        <td><%= tbl['rank'] %></td>
+        <td><%= tbl['id'] %></td>
+        <td><%= tbl['name'] %></td>
+        <td><%= @userlist.index(tbl['id']) + 1 %></td>
+        <td>Unfinished Function</td>
+        <td><%= tbl['cputime'] %></td>
+        <td><%= tbl['date'] %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

@@ -1,0 +1,123 @@
+<% unless @userlist.include?(id=params[:id]) %>
+  Invalid ID.
+<% else %>
+  <% @comp = params[:comp] %>
+  <% user = @userset[id] %>
+  <% unless @comp == 'none' %>
+    <% unless checkcomp() %>
+      <% @comp = 'forall' %>
+    <% end %>
+  <% end %>
+  <%= link_to 'Back to Ranklist', :action => 'index' %>
+  <% if @comp.class.to_s == 'Array' %>
+    <%= link_to 'Back to Personal', '/main/personal/' + user.acmid + '?comp[]=' + @comp.join('&comp[]=') %>
+  <% else %>
+    <%= link_to 'Back to Personal', :action => 'personal', :id => user.acmid, :comp => @comp %>
+  <% end %>
+  <p>
+  <% if @comp.class.to_s == 'Array' %>
+    <%= link_to 'Regenerate', '/main/random/' + user.acmid + '?comp[]=' + @comp.join('&comp[]=') %>
+  <% else %>
+    <%= link_to 'Regenerate', :action => 'random', :id => user.acmid, :comp => @comp %>
+  <% end %>
+  <%= link_to 'Generate Problems None Solved', :action => 'random', :id => user.acmid, :comp => 'none' %>
+  <p>
+  Choose whom you want to compare with(choose multiple by Controll or Shift): <br>
+  <form action='' method='get'>
+  <select name="comp[]" multiple size=5>
+    <% for uid in @userlist %>
+      <% if uid != user.acmid %>
+        <% if @comp == 'forall' %>
+          <option value=<%= uid %>><%= @userset[uid].name %></option>
+        <% else %>
+          <option value=<%= uid %><%= ' selected' if @comp.include?(uid) %>><%= @userset[uid].name %></option>
+        <% end %>
+      <% end %>
+    <% end %>
+  </select>
+  <input type=submit value=submit>
+  </form>
+  <p>
+  <% @newlist = @problist - user.solvedlist %>
+  <% unless @comp == 'forall' || @comp == 'none' %>
+    <% generatecomplist() %>
+    <h3>Compare</h3>
+    with: <% @comp.each{ |uid| %>
+      <%= sprintf("%s, <br>", @userset[uid].name) %>
+    <%}%>
+    <table border=1>
+      <tr class=tableheader>
+        <td>Problem ID</td>
+        <td>Title</td>
+        <td>Accepted</td>
+        <td>Accepted-by</td>
+        <td>Percent of Accepted</td>
+      </tr>
+      <% range = @newlist.size %>
+      <% table = Hash.new %>
+      <% i = 0 %>
+      <% for counter in 0...[10, range].min %>
+        <% pid = @newlist[rand(range)] %>
+        <% if table[pid] %>
+          <% redo %>
+        <% end %>
+        <% problem = @probset[pid] %>
+        <% table[pid] = true %>
+        <% i = 1 - i %>
+        <tr class=tablecontent<%= i %>>
+          <td><%= link_to problem.pid, getproblink(problem.id) %></td>
+          <td><%= link_to problem.title, :action => 'problem', :id => problem.pid, :sortby => @sortby, :showtype => @showtype %></td>
+          <td><%= solvednum = problem.solvednum %></td>
+          <% index = 0 %>
+          <td><% for uid in @comp %>
+            <% if problem.getrank(uid) != -1 %>
+              <%= sprintf("%s, <br>", @userset[uid].name) %>
+            <% end %>
+          <% end %>
+          </td>
+          <td><%= sprintf("%.2f", problem.solvednum * 100.0 / @usernum) %>%</td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <% if @comp == 'none' %>
+      <% @newlist.delete_if {|item| @probset[item].solvednum > 0} %>
+    <% end %>
+    <h3>Solved List</h3>
+    <table border=1>
+    <tr class=tableheader>
+      <td>Problem ID</td>
+      <td>Title</td>
+      <td>Accepted</td>
+      <td>Rank in this Problem</td>
+      <td>Percent of Accepted</td>
+    </tr>
+    <% table = Hash.new %>
+    <% range = @newlist.size %>
+    <% i = 0 %>
+    <% for counter in 0...[10, range].min %>
+      <% i = 1 - i %>
+      <% pid = @newlist[rand(range)] %>
+      <% if table[pid] %>
+        <% redo %>
+      <% end %>
+      <% problem = @probset[pid] %>
+      <tr class=tablecontent<%= i %>>
+        <td><%= link_to problem.pid, getproblink(problem.id) %></td>
+        <td><%= link_to problem.title, :action => 'problem', :id => problem.pid, :uid => user.acmid, :comp => @comp %></td>
+        <td><%= solvednum = problem.solvednum %></td>
+        <td><% if problem.solvednum > 0 %>
+          <% problem.solvedlist.each {|item| %>
+            <%= item['name'] %>
+            <%= ', <br>' %>
+          <%}%>
+          <% else %>
+            None solved this.
+          <% end %>
+        </td>
+        <td><%= sprintf("%.2f", problem.solvednum * 100.0 / @usernum) %>%</td>
+      </tr>
+    <% end %>
+    </table>
+  <% end %>
+<% end %>

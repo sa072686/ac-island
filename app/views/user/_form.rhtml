@@ -1,0 +1,21 @@
+使用者名稱：<input type=text name=username<%= ' value='+@target.username if @target %><%= ' readonly' unless @create %>><br>
+密碼：<input type=password name=password><br>
+<% if @create %>
+確認密碼：<input type=password name=password_confirmation><br>
+<input type=hidden name=register value=true>
+<% end %>
+<% if @manage %>
+<input type=hidden name=manage value=true>
+權限：<select name=permission>
+<% get_permission_list %>
+<% for item in @permission_list %>
+<option value=<%= item.id %><%= ' selected' if @target and @target.permission.to_i == item.id %>><%= item.title %></option>
+<% end %>
+</select><br>
+<% end %>
+<% unless @create %>
+新密碼：<input type=password name=new_password><br>
+確認新密碼：<input type=password name=new_password_confirmation><br>
+<% end %>
+<input type=hidden name=id value=<%= @target.id if @target %>>
+<input type=submit name=submit value=送出>

@@ -1,0 +1,84 @@
+/*  Modified By Celia 2008.07.26 */
+body {
+background-color:white;
+color:#333333;
+}
+a:link {
+color:black;
+}
+a:visited {
+color:black;
+}
+a:hover {
+color:purple;
+}
+#topBox {
+background-color:#cccccc;
+}
+#mainMenu {
+color:white;
+}
+#mainMenu a:link {
+color:#666666;
+}
+#mainMenu a:visited {
+color:#666666;
+}
+#mainMenu a:hover {
+color:black;
+}
+#message {
+color:#ff0099;
+}
+#leftBox {
+background-color:white;
+}
+#leftBox a:hover {
+background-color:#ffffdd;
+text-decoration:none;
+}
+#rightBox {
+background-color:white;
+}
+h1 {
+color:black;
+}
+h2 {
+color:#220000;
+}
+h3 {
+color:#442200;
+}
+h4 {
+color:#664422;
+}
+legend {
+color:black;
+}
+fieldset {
+border-color:#aaaaaa;
+}
+textarea {
+background-color:#ffffdd;
+color:#330000;
+}
+.table_header {
+background-color:#606060;
+color:#ccccaa;
+}
+.table_header:hover {
+background-color:#606060;
+}
+table {
+background-color:#cccccc;
+border-color:black;
+}
+table tr:hover {
+background-color:#ddddcc;
+}
+table td {
+border-color:white;
+}
+.new_article {
+color:crimson;
+}

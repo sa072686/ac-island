@@ -1,0 +1,21 @@
+<h2>日誌</h2>
+<%= h('0 => 消息公告，-1 => 更新日誌') %>
+<table border=1>
+  <tr class=table_header>
+    <td>日期</td>
+    <td>內容</td>
+    <td>作者</td>
+    <td>所屬</td>
+  </tr>
+  <% for diary in @diarylist %>
+    <tr>
+      <td><%= diary.date.to_s(:db) %></td>
+      <td><%= diary.content %></td>
+      <td><%= get_username(diary.author) %></td>
+      <td><%= get_diary_parent(diary.parent) %></td>
+    </tr>
+  <% end %>
+</table>
+<form action=/diary/add_diary method=post>
+<%= render :partial => 'form' %>
+</form>

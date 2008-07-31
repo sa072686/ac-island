@@ -1,0 +1,12 @@
+名稱<input type=text name=title value="<%= @category.title %>"><br>
+順序<input type=text name=order value="<%= @category.order %>"><br>
+所屬<select name=parent>
+<% for root in @rootlist %>
+  <option value=<%= root[0] %><%= ' selected' if @category.parent.to_i == root[0] %>><%= root[1] %></option>
+<% end %>
+<% for cat in @list %>
+  <option value=<%= cat.id %><%= ' selected' if @category.parent.to_i == cat.id %>><%= cat.title %></option>
+<% end %>
+</select><br>
+<input type=hidden name=id value=<%= @params[:id] %>>
+<input type=submit value='送出'>

@@ -1,0 +1,23 @@
+<h2>管理 CSS</h2>
+<%= error_messages_for :css %>
+<table border=1>
+  <tr class=table_header>
+    <td>名稱</td>
+    <td>檔案名稱</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <% for item in @css_list %>
+    <tr>
+      <td><%= h(item.name) %></td>
+      <td><%= h(item.fname) %></td>
+      <td><%= link_to '編輯', {:action => 'edit_css', :id => item.id} %></td>
+      <td><%= link_to '編輯樣式表', {:action => 'edit_css_content', :id => item.id} %></td>
+      <td><%= link_to '刪除', {:action => 'del_css', :id => item.id}, :confirm => '確定要刪除嗎？', :method => :post %></td>
+    </tr>
+  <% end %>
+</table>
+<form action=/admin/add_css method=post>
+<%= render :partial => 'css_form' %>
+</form>

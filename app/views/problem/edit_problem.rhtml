@@ -1,0 +1,15 @@
+<% if @preview %>
+  <%= render :partial => 'viewproblem' %>
+<% end %>
+<% if @problem %>
+<h2>編輯題目</h2>
+<% else %>
+<h2>新增題目</h2>
+<% end %>
+<% if @problem %>
+<form action='/problem/update_problem' method=post>
+<% else %>
+<form action='/problem/add_problem' method=post>
+<% end %>
+<%= render :partial => 'form' %>
+</form>

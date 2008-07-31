@@ -1,0 +1,101 @@
+<% unless @userlist.include?(id=params[:id]) %>
+  Invalid ID.
+<% else %>
+  <% user = @userset[id] %>
+  <% @comp = params[:comp] %>
+  <% unless checkcomp() %>
+    <% @comp = 'showsolvedlist' %>
+  <% end %>
+  <%= @message %>
+  <h2><%= sprintf("%s: %s", user.acmid, user.name) %></h2>
+  <% if (i=@userlist.index(user.acmid)) > 0 %>
+    <%= link_to 'Previous User', :action => 'personal', :id => @userlist[i-1] %>
+  <% end %>
+  <%= link_to 'Back to Ranklist', :action => 'index' %>
+  <%= link_to 'Go to Unsolved Problem List', :action => 'showproblist', :showtype => user.acmid %>
+  <% if i + 1 < @usernum %>
+    <%= link_to 'Next User', :action => 'personal', :id => @userlist[i+1] %>
+  <% end %>
+  <p>
+  <% if @comp.class.to_s == 'Array' %>
+    <%= link_to 'Random Generate', '/main/random/' + user.acmid + '?comp[]=' + @comp.join('&comp[]=') %>
+  <% else %>
+    <%= link_to 'Random Generate', :action => 'random', :id => user.acmid, :comp => @comp %>
+  <% end %>
+  <p>
+  Choose whom you want to compare with(choose multiple by Controll): <br>
+  <form action='' method='get'>
+  <select name="comp[]" multiple size=5>
+    <% for uid in @userlist %>
+      <% if uid != user.acmid %>
+        <% if @comp == 'showsolvedlist' %>
+          <option value=<%= uid %>><%= @userset[uid].name %></option>
+        <% else %>
+          <option value=<%= uid %><%= ' selected' if @comp.include?(uid) %>><%= @userset[uid].name %></option>
+        <% end %>
+      <% end %>
+    <% end %>
+  </select>
+  <input type=submit value=submit>
+  <input type=submit name=submit value="random generate">
+  </form>
+  <p>
+  <% unless @comp == 'showsolvedlist' %>
+    <% generatecomplist() %>
+    <h3>Compare</h3>
+    with: <% @comp.each{ |uid| %>
+      <%= sprintf("%s, <br>", @userset[uid].name) %>
+    <%}%>
+    <table border=1>
+      <tr class=tableheader>
+        <td>Problem ID</td>
+        <td>Title</td>
+        <td>Accepted</td>
+        <td>Accepted-by</td>
+        <td>Percent of Accepted</td>
+      </tr>
+      <% i = 0 %>
+      <% for id in @newlist %>
+        <% problem = @probset[id] %>
+        <% i = 1 - i %>
+        <tr class=tablecontent<%= i %>>
+          <td><%= link_to problem.pid, getproblink(problem.id) %></td>
+          <td><%= link_to problem.title, :action => 'problem', :id => problem.pid, :sortby => @sortby, :showtype => @showtype %></td>
+          <td><%= solvednum = problem.solvednum %></td>
+          <% index = 0 %>
+          <td><% for uid in @comp %>
+            <% if problem.getrank(uid) != -1 %>
+              <%= sprintf("%s, <br>", @userset[uid].name) %>
+            <% end %>
+          <% end %>
+          </td>
+          <td><%= sprintf("%.2f", problem.solvednum * 100.0 / @usernum) %>%</td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <% @newlist = user.solvedlist %>
+    <h3>Solved List</h3>
+    <table border=1>
+    <tr class=tableheader>
+      <td>Problem ID</td>
+      <td>Title</td>
+      <td>Accepted</td>
+      <td>Rank in this Problem</td>
+      <td>Percent of Accepted</td>
+    </tr>
+    <% i = 0 %>
+    <% for id in @newlist %>
+      <% i = 1 - i %>
+      <% problem = @probset[id] %>
+      <tr class=tablecontent<%= i %>>
+        <td><%= link_to problem.pid, getproblink(problem.id) %></td>
+        <td><%= link_to problem.title, :action => 'problem', :id => problem.pid, :uid => user.acmid, :comp => @comp %></td>
+        <td><%= solvednum = problem.solvednum %></td>
+        <td><%= problem.getrank(user.acmid) %></td>
+        <td><%= sprintf("%.2f", problem.solvednum * 100.0 / @usernum) %>%</td>
+      </tr>
+    <% end %>
+    </table>
+  <% end %>
+<% end %>
